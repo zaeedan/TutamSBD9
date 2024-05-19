@@ -15,6 +15,7 @@ async function getAllTodos(req, res) {
 async function addNewTodo(req, res) {
   try { 
     const todo = new Todo({
+      title: req.body.title,
       description: req.body.description,
       responsible: req.body.responsible,
       priority: req.body.priority,
@@ -45,6 +46,7 @@ async function deleteTodoById(req, res) {
 async function updateTodoById(req, res) {
   try {
     const todo = await Todo.findById(req.params.id);
+    todo.title = req.body.title;
     todo.description = req.body.description;
     todo.responsible = req.body.responsible;
     todo.priority = req.body.priority;
